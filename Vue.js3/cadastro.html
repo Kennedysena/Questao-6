@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/asset/style-LAPTOP-G8J935ID.css">
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.18.1/min/moment.min.js"></script>
+  <script src="https://unpkg.com/vue@3"></script>
+  <title>DESAFIO HEALTH.D</title>
+<body>
+
+    <header class="header"></header>
+
+  <div class="wrap">
+    <nav id="w0" class="navbar navbar-default navbar-top">
+      <div class="container">
+        <div class="navbar-header">
+        </div>
+      </div>
+    </nav>
+
+    <main id="app">
+        <h1>Faça seu cadastro</h1>
+
+        <form action="">
+
+          <div class="row">
+          <div class=" container-sm col-sm-2">
+          <label for="nome">
+            <span>Nome</span>
+            <input v-model="nome" type="text" name="nome" id="nome" placeholder="Ensira seu nome completo" :required>
+          </label>
+          </div>
+
+          <div class=" container-sm col-sm-4,col-sm-2">
+          <label for="datanascimento">
+            <span>Data de Nascimento</span>
+          <input v-model="datanascimento" type="date" name="datanascimento" id="datanascimento" :required>
+          </label>
+        </div>
+
+          <div class=" container-sm col-sm-4,col-sm-2">
+          <label for="sexo">
+            <span>Sexo</span>
+            <select name="sexo" id="sexo" :required>
+            <option selected disabled value="text">Selecione</option>
+            <option>Masculino</option>
+            <option>Feminino</option>
+            <option>Outros</option>
+            </select>
+          </label>
+          </div>
+
+          <div class=" container-col-sm-2">
+        <label for="nomepai">
+          <span>Nome do Pai</span>
+        <input v-model="nomepai" type="text" name="nomepai" id="nomepai" placeholder="Ensira o nome do pai" :required="menorIdade() && !nomepai">
+        </label>
+       </div>
+
+        <div class=" container-col-sm-2">
+          <label for="nomemae">
+            <span>Nome da Mãe</span>
+          <input v-model="nomemae" type="text" name="nomemae" id="nomemae" placeholder="Ensira o nome da Mãe" :required="menorIdade() && !nomemae">
+          </label>
+         </div>
+
+        <div class="container-sm col-sm-4">
+          <label for="profissao">
+            <span>Profisão</span>
+            <select name="profissao" id="profissao" :required>
+            <option>Tec em Informatica</option>
+            <option>Contador</option>
+            <option>Administrador</option>
+            <option>Eng. Eletricista</option>
+            <option>Nenhuma das Alternativas</option>
+          </select>
+      </label>
+        </div>
+
+      </div>
+        <input type="submit" value="Enviar" id="button">
+
+    </form>
+    </main>
+<script>
+  const { createApp } = Vue
+
+  createApp({
+    data() {
+      console.log(this.anoNascimento)
+      return {
+        nome: '',
+        datanascimento : '',
+        sexo: '',
+        nomepai: '',
+        nomemae: '',
+        profissao: '',
+        anoNascimento: ''
+      }
+    },
+    methods: {
+      calculaidade () {
+        this.anoNascimento = new Date(''+this.datanascimento).getFullYear()
+        return 2022 - parseInt(this.anoNascimento)
+      },
+        maiorIdade () {
+          return this.calculaidade() >= 18
+        },
+        menorIdade () {
+            return this.calculaidade() < 18
+        }
+    }
+  }).mount('#app')
+
+</script>
+</body>
+</html>
